@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Payment</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+
+  <body class="container-fluid">
+    <div th:replace="fragments/layout :: siteHeader"></div>
+    <h2>Payment Page</h2>
+
+    <h4>
+      Total Amount: $<span th:text="${#numbers.formatDecimal(cartTotal, 1, 2)}"
+        >0.00</span
+      >
+    </h4>
+
+    <form th:action="@{/checkout/method}" method="post" class="mb-3">
+      <label for="method">Payment Method</label>
+      <select id="method" name="paymentMethod" class="form-control" required>
+        <option value="card">Credit Card</option>
+        <option value="qr">QR</option>
+      </select>
+      <button type="submit" class="btn btn-primary mt-3">Pay Now</button>
+    </form>
+
+    <a th:href="@{/cart}" class="btn btn-secondary mt-2">Back to Cart</a>
+  </body>
+</html>

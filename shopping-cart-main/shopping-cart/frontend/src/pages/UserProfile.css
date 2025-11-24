@@ -1,0 +1,465 @@
+/* 整体容器 - 与Login统一的白色主调 */
+.profile-container {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Hide global navbar when viewing profile to remove the top block */
+body.profile-page .navbar {
+    display: none;
+}
+
+.loading {
+    text-align: center;
+    color: #495057;
+    font-size: 18px;
+    padding: 50px;
+}
+
+/* Profile卡片 - 纯白背景 */
+.profile-card {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Profile头部 - 黑色主题 */
+.profile-header {
+    background: hsl(180, 1%, 84%);
+    color: white;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* 登出按钮 - 白色边框 */
+.logout-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: white;
+    color: #212529;
+    transform: translateY(-1px);
+}
+
+/* Profile内容区域 */
+.profile-content {
+    padding: 40px;
+}
+
+/* 信息条目 */
+.info-item {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item:hover {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #212529;
+    font-size: 15px;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+.info-value {
+    color: #6c757d;
+    font-size: 15px;
+    word-break: break-word;
+}
+
+/* 编辑按钮 - 黑色背景 */
+.edit-btn {
+    background: #212529;
+    color: white;
+    border: 1px solid #212529;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px;
+}
+
+.edit-btn:hover:not(.disabled) {
+    background: #000000;
+    border-color: #000000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn.disabled {
+    background: #e9ecef;
+    color: #adb5bd;
+    border-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+/* 弹窗遮罩 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 弹窗内容 */
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 弹窗头部 */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #212529;
+    font-weight: 600;
+}
+
+/* 关闭按钮 */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #adb5bd;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: #f8f9fa;
+    color: #212529;
+}
+
+/* 弹窗主体 */
+.modal-body {
+    padding: 30px;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #212529;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* 输入框 - 白色背景，灰色边框 */
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #212529;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #495057;
+    box-shadow: 0 0 0 3px rgba(73, 80, 87, 0.1);
+    background-color: #ffffff;
+}
+
+.form-group input::placeholder {
+    color: #adb5bd;
+    opacity: 1;
+}
+
+.form-help {
+    display: block;
+    margin-top: 6px;
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* 错误提示 */
+.error-message {
+    background-color: #fff5f5;
+    border: 1px solid #feb2b2;
+    color: #c53030;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+/* 成功提示 */
+.success-message {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #166534;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.error-icon, .success-icon {
+    font-size: 16px;
+}
+
+/* 弹窗底部 */
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* 取消按钮 - 白色背景，灰色边框 */
+.cancel-btn {
+    background: transparent;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+    color: #495057;
+}
+
+/* 保存按钮 - 黑色背景 */
+.save-btn {
+    background: #212529;
+    color: #ffffff;
+    border: 1px solid #212529;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.save-btn:hover:not(:disabled) {
+    background: #000000;
+    border-color: #000000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.save-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 加载动画 */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 20px 10px;
+    }
+
+    .profile-header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .profile-header h1 {
+        font-size: 20px;
+    }
+
+    .profile-content {
+        padding: 24px 20px;
+    }
+
+    .info-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .info-label {
+        font-size: 14px;
+    }
+
+    .info-value {
+        font-size: 14px;
+        margin-left: 30px;
+    }
+
+    .edit-btn {
+        width: 100%;
+        margin-left: 30px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        flex-direction: column;
+    }
+
+    .cancel-btn, .save-btn {
+        width: 100%;
+    }
+}
