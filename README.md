@@ -25,5 +25,3 @@ Check that you have installed (verify that it is ready inside your terminal)**
 
 4. **Database Setup** TBC
 5. Run the Spring Boot App from your IDE (to check that it is working)
-
-**NUS-ISS SA-61 TEAM-08**
