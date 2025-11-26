@@ -20,10 +20,10 @@ Check that you have installed (verify that it is ready inside your terminal)**
    Once Git have been installed, open a terminal at your desired directory (eg local C drive) and key
    in the following command to clone the folder
 
-   git clone https://github.com/PB-Tan/shopping-cart.git
+   git clone https://github.com/Ovya26/shopping-cart.git
    cd shopping-cart
-
-   **NUS-ISS SA-61 TEAM-08**
 
 4. **Database Setup** TBC
 5. Run the Spring Boot App from your IDE (to check that it is working)
+
+**NUS-ISS SA-61 TEAM-08**
